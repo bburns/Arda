@@ -2,13 +2,24 @@
 
 Maps of J. R. R. Tolkien's Middle Earth, using a DEM (Digital Elevation Model) and place name vectors.
 
-[Arda](https://en.wikipedia.org/wiki/Arda_(Tolkien)) was the name of the world, which included the realms known as Middle Earth. 
+[Arda](https://en.wikipedia.org/wiki/Arda_(Tolkien)) was the name of the entire world, which included the realms known as Middle Earth. 
 
 
 ## Goals
 
 - Make colored elevation maps with hillshading and place names
 - Use as detailed maps for D&D Adventures in Middle Earth games
+
+
+## Data
+
+The DEM is stored in a 10k x 10k jpg file, made by users monks and __ on the Outerra Worlds Forum. 
+
+The vector data includes the place names, rivers, forests, mountains - made by monks, __, and maintained by __. 
+
+The entire map covers 2000km on each axis, so the resolution of the DEM is 200m/px. 
+
+The file `data/raster/10K.wld` defines how the DEM corresponds to the map coordinate system as used by the vector data. This is currently slightly off - improvements could be made. 
 
 
 ## Installing
