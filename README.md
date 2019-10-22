@@ -30,6 +30,8 @@ The file `data/raster/10K.wld` defines how the DEM corresponds to the map coordi
 
 Install [QGIS](https://qgis.org/) or similar GIS program.
 
+Get the Tolkien font here - https://fontzone.net/font-details/tolkien.
+
 Obtain the `10K.jpg` DEM and put in `data/raster` subdirectory.
 
 Obtain the [ME-GIS](https://github.com/jvangeld/ME-GIS) data and put in the `data` subdirectory. 
