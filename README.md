@@ -32,6 +32,8 @@ Install [QGIS](https://qgis.org/) or similar GIS program.
 
 Obtain the `10K.jpg` DEM and put in `data/raster` subdirectory.
 
+Obtain the [ME-GIS](https://github.com/jvangeld/ME-GIS) data and put in the `data` subdirectory. 
+
 Build the hillshade layer.
 
 
