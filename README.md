@@ -10,14 +10,14 @@ Maps of J. R. R. Tolkien's Middle Earth, using a DEM (Digital Elevation Model) a
 - Make colored elevation maps with hillshading
 - Make name placement and size similar to Tolkien's maps
 - Make detailed maps to correspond to parts of books
-- Use as detailed maps for D&D Adventures in Middle Earth games
+- Use as detailed maps for Adventures in Middle Earth (D&D 5e) games
 
 
 ## Data
 
-The DEM is stored in a 10k x 10k jpg file, made by users monks and __ on the Outerra Worlds Forum. 
+The DEM is stored in a 10k x 10k jpg file, made by monks and Redrobes on the [Outerra Worlds Forum](). 
 
-The vector data includes the place names, rivers, forests, mountains - made by monks, __, and maintained by __. 
+The vector data includes the place names, rivers, forests, mountains - made by monks, __, and maintained by [j](). 
 
 The entire map covers 2000km on each axis, so the resolution of the DEM is 200m/px. 
 
@@ -36,7 +36,7 @@ Build the hillshade layer.
 ## Todo
 
 - Add river sizes in meters and render widths accordingly
-- Update/organize placenames - current shapefile includes mountains/regions but as points
+- Update/organize placenames - current shapefile includes mountains/regions but as points - split different types out into separate shapefiles? incl name and fontsizeKm
 - Make map views for the Hobbit (overview, The Shire, Eriador, Misty Mountains, Mirkwood)
 - Make map views for The Lord of the Rings corresponding to travels
 - Merge with existing shapefile project
