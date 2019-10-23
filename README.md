@@ -4,7 +4,7 @@ Maps of J. R. R. Tolkien's Middle Earth, using a DEM (Digital Elevation Model) a
 
 [Arda](https://en.wikipedia.org/wiki/Arda_(Tolkien)) was the name of the entire world, which included the part known as Middle Earth. 
 
-![map](https://raw.githubusercontent.com/bburns/arda/master/renders/lotr-900px.jpg)
+![map](https://raw.githubusercontent.com/bburns/arda/master/renders/lotr2-900px.jpg)
 
 
 ## Goals
