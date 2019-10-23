@@ -19,7 +19,7 @@ Maps of J. R. R. Tolkien's Middle Earth, using a DEM (Digital Elevation Model) a
 
 The DEM is stored in a 10k x 10k jpg file, made by monks and Redrobes on the [Outerra Worlds Forum](http://worlds.outercraft.com/forum/index.php). 
 
-The vector data includes the place names, rivers, forests, mountains - made by monks and Redrobes, and maintained by jvangeld [here](https://github.com/jvangeld/ME-GIS). 
+The vector data includes the place names, rivers, forests, mountains - made by monks, SeerBlue, and Redrobes, and maintained by jvangeld [here](https://github.com/jvangeld/ME-GIS). 
 
 The entire map covers 2000km on each axis, so the resolution of the DEM is 200m/px. 
 
@@ -41,7 +41,6 @@ Build the hillshade layer.
 
 ## Todo
 
-- Merge with existing shapefile project
 - Update/organize placenames - current shapefile includes mountains/regions but as points - split different types out into separate shapefiles? incl name and fontsizeKm
 - Add river sizes in meters and render widths accordingly
 - Make map views for the Hobbit (overview, The Shire, Eriador, Misty Mountains, Mirkwood)
