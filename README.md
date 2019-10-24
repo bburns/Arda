@@ -29,11 +29,10 @@ The file `data/rasters/10K.wld` defines how the DEM corresponds to the map coord
 ## Installing
 
 - Get the Tolkien font here - https://fontzone.net/font-details/tolkien
-- Obtain the `10K.jpg` DEM and put in `data/rasters` subdirectory
-- Obtain [ME-GIS](https://github.com/jvangeld/ME-GIS) and put all files in the `data/vectors` subdirectory
+- Clone [ME-GIS](https://github.com/jvangeld/ME-GIS) to the `data/vectors` subdirectory
 - Install [QGIS](https://qgis.org/)
 - Open `arda.qgz` in QGIS
-- Build the hillshade layer
+- Build the hillshade layer to `data/rasters/10k_hillshade.tif` (will be a 100MB or so TIF file)
 
 
 ## Todo
