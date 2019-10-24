@@ -23,20 +23,17 @@ The vector data includes the place names, rivers, forests, mountains - made by m
 
 The entire map covers 2000km on each axis, so the resolution of the DEM is 200m/px. 
 
-The file `data/raster/10K.wld` defines how the DEM corresponds to the map coordinate system as used by the vector data. This is currently slightly off - improvements could be made. 
+The file `data/rasters/10K.wld` defines how the DEM corresponds to the map coordinate system as used by the vector data. This is currently slightly off - improvements could be made. 
 
 
 ## Installing
 
-Install [QGIS](https://qgis.org/).
-
-Get the Tolkien font here - https://fontzone.net/font-details/tolkien.
-
-Obtain the `10K.jpg` DEM and put in `data/ME-DEM` subdirectory.
-
-Obtain [ME-GIS](https://github.com/jvangeld/ME-GIS) and put in the `data/ME-GIS` subdirectory. 
-
-Build the hillshade layer.
+- Get the Tolkien font here - https://fontzone.net/font-details/tolkien
+- Obtain the `10K.jpg` DEM and put in `data/rasters` subdirectory
+- Obtain [ME-GIS](https://github.com/jvangeld/ME-GIS) and put all files in the `data/vectors` subdirectory
+- Install [QGIS](https://qgis.org/)
+- Open `arda.qgz` in QGIS
+- Build the hillshade layer
 
 
 ## Todo
