@@ -28,20 +28,19 @@ The file `data/raster/10K.wld` defines how the DEM corresponds to the map coordi
 
 ## Installing
 
-Install [QGIS](https://qgis.org/) or similar GIS program.
+Install [QGIS](https://qgis.org/).
 
 Get the Tolkien font here - https://fontzone.net/font-details/tolkien.
 
-Obtain the `10K.jpg` DEM and put in `data/raster` subdirectory.
+Obtain the `10K.jpg` DEM and put in `data/ME-DEM` subdirectory.
 
-Obtain the [ME-GIS](https://github.com/jvangeld/ME-GIS) data and put in the `data` subdirectory. 
+Obtain [ME-GIS](https://github.com/jvangeld/ME-GIS) and put in the `data/ME-GIS` subdirectory. 
 
 Build the hillshade layer.
 
 
 ## Todo
 
-- Update/organize placenames - current shapefile includes mountains/regions but as points - split different types out into separate shapefiles? incl name and fontsizeKm
 - Add river sizes in meters and render widths accordingly
 - Make map views for the Hobbit (overview, The Shire, Eriador, Misty Mountains, Mirkwood)
 - Make map views for The Lord of the Rings corresponding to travels
