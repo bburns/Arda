@@ -6,6 +6,8 @@ Maps of J. R. R. Tolkien's Middle Earth, using a DEM (Digital Elevation Model) a
 
 ![map](https://raw.githubusercontent.com/bburns/arda/master/renders/lotr-900px.jpg)
 
+![map](https://raw.githubusercontent.com/bburns/arda/master/renders/ettenmoors-900px.jpg)
+
 
 ## Goals
 
@@ -36,9 +38,9 @@ Clone [ME-GIS](https://github.com/jvangeld/ME-GIS) to the `data/vectors` subdire
 
     git clone https://github.com/jvangeld/ME-GIS data/vectors
 
-Install [QGIS](https://qgis.org/)
-
 Get the Tolkien font here - https://fontzone.net/font-details/tolkien
+
+Install [QGIS](https://qgis.org/)
 
 Open `arda.qgs` in QGIS
 
