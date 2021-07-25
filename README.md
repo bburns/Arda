@@ -18,9 +18,9 @@ Maps of J. R. R. Tolkien's Middle Earth, using a DEM (Digital Elevation Model) a
 
 ## Data
 
-The DEM is stored in a 10k x 10k jpg file, made by monks and Redrobes on the [Outerra Worlds Forum](http://worlds.outercraft.com/forum/index.php). 
+The DEM is stored in a 10k x 10k jpg file, made by monks and Redrobes on the [Outerra Worlds Forum](http://worlds.outercraft.com/forum/index.php). The process apparently included some real-world 3d elevation data, hand-editing, and simulated erosion. Somewhere they also have a 40k x 40k DEM (50m/px) version. 
 
-The vector data includes the place names, rivers, forests, mountains - made by monks, SeerBlue, and Redrobes, and maintained by jvangeld here - https://github.com/jvangeld/ME-GIS. 
+The vector data includes place names, rivers, forests, mountains - made by monks, SeerBlue, and Redrobes, and maintained by jvangeld here - https://github.com/jvangeld/ME-GIS. I added the curved Tolkienesque labels and colored the different elevations.
 
 The entire map covers 2000km on each axis, so the resolution of the DEM is 200m/px. 
 
@@ -56,3 +56,8 @@ Build the hillshade layer - **Raster / Analysis / Hillshade** - enter a z-factor
 - Switch easily between colorful and minimal color versions - how do?
 - Get access to 40k x 40k DEM (50m/px) version
 - Render to tiles for Google Maps-like site, using Leaflet - try vector map tiles and mapboxGL? include search index
+
+
+## License
+
+My contribution (labels and coloring) is MIT. The 3d DEM data/jpg is more uncertain - you'd need to find monks and Redrobes to know for sure.
