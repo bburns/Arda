@@ -1,4 +1,2 @@
-*.lnk
-renders/
-data/rasters/
-data/vectors/
+*.qgs~
+*.zip
