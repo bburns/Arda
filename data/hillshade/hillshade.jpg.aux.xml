@@ -1,0 +1,17 @@
+<PAMDataset>
+  <GeoTransform> -1.0000500000000000e+03,  2.0009999999999999e+02,  0.0000000000000000e+00,  2.0012000500000000e+06,  0.0000000000000000e+00, -2.0009999999999999e+02</GeoTransform>
+  <PAMRasterBand band="1">
+    <NoDataValue>0.00000000000000E+00</NoDataValue>
+    <Metadata>
+      <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
+      <MDI key="STATISTICS_MINIMUM">1</MDI>
+      <MDI key="STATISTICS_MAXIMUM">252</MDI>
+      <MDI key="STATISTICS_MEAN">172.11555136</MDI>
+      <MDI key="STATISTICS_STDDEV">27.069237120451</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">100</MDI>
+    </Metadata>
+    <Metadata domain="IMAGE_STRUCTURE">
+      <MDI key="COMPRESSION">JPEG</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

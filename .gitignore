@@ -1,6 +1,3 @@
-# 100mb tif image file -
-data/hillshade 
-
 # qgis backup
 *.qgs~
 
