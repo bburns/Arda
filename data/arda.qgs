@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" saveUserFull="Brian Burns" saveUser="bburn" version="3.34.12-Prizren" saveDateTime="2025-04-08T23:28:15">
+<qgis projectname="" saveUserFull="user" saveUser="user" version="3.34.12-Prizren" saveDateTime="2025-04-08T23:28:15">
   <homePath path=""/>
   <title></title>
   <transaction mode="Disabled"/>
@@ -8128,7 +8128,7 @@ def my_form_open(dialog, layer, feature):
     <dates>
       <date type="Created" value="2019-10-13T14:32:03"/>
     </dates>
-    <author>Brian Burns</author>
+    <author>user</author>
     <creation>2019-10-13T14:32:03</creation>
   </projectMetadata>
   <Annotations/>
