@@ -4,9 +4,9 @@ Maps of J. R. R. Tolkien's Middle Earth, using a DEM (Digital Elevation Model), 
 
 [Arda](https://en.wikipedia.org/wiki/Arda_(Tolkien)) was the name of the entire world, which included the part known as Middle Earth. 
 
-![lotr](./renders/lotr-900px.jpg)
+![all](./images/map-all.jpg)
 
-![ettenmoors](./renders/ettenmoors-900px.jpg)
+![ettenmoors](./images/map-ettenmoors.jpg)
 
 ## Goals
 
@@ -64,10 +64,16 @@ Install [QGIS](https://qgis.org/)
 
 Open [data/arda.qgs](./data/arda.qgs) in QGIS
 
+You can turn different layers on and off, adjust opacity, change the map colors, add labels, etc.
+
+![qgis](./images/qgis-screen.jpg)
+
 
 ## Building
 
 If you change the DEM and need to rebuild the hillshade layer - **Raster / Analysis / Hillshade** - enter a Z factor (vertical exaggeration) of 100.0 and click Run. Then adjust the global opacity of the resulting layer to 50% - **Layer Styling sidebar / Transparency / Global Opacity**. This allows the underlying colored map to show through. 
+
+![hillshade](./images/qgis-hillshade.png)
 
 
 ## Todo
