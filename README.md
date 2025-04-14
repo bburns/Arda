@@ -58,7 +58,7 @@ Clone this repo
     git clone https://github.com/bburns/Arda.git
     cd Arda
 
-Install the Tolkien font (fonts/Tolkien.ttf) in your system. 
+Install the Tolkien font (fonts/Tolkien.ttf) in your system - eg in Windows, right click on the file and say Install. 
 
 Install [QGIS](https://qgis.org/)
 
@@ -67,7 +67,7 @@ Open [data/arda.qgs](./data/arda.qgs) in QGIS
 
 ## Building
 
-To build a hillshade layer - **Raster / Analysis / Hillshade** - enter a Z factor (vertical exaggeration) of 100.0 and click Run. Then adjust the global opacity of the resulting layer to 50% - **Layer Styling sidebar / Transparency / Global Opacity**. This allows the underlying colored map to show through. 
+If you change the DEM and need to rebuild the hillshade layer - **Raster / Analysis / Hillshade** - enter a Z factor (vertical exaggeration) of 100.0 and click Run. Then adjust the global opacity of the resulting layer to 50% - **Layer Styling sidebar / Transparency / Global Opacity**. This allows the underlying colored map to show through. 
 
 
 ## Todo
