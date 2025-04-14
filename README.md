@@ -26,6 +26,9 @@ jvangeld took over project maintenance.
 
 bburns made the project Arda - added curved Tolkienesque labels, colored the different elevations, and added a hillshade layer.
 
+andewheiss took over project maintenance for the old vector layers - https://github.com/andrewheiss/ME-GIS - so these need to be merged...
+
+
 ## Data
 
 The folder 'data' includes:
