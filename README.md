@@ -92,4 +92,4 @@ If you change the DEM and need to rebuild the hillshade layer - **Raster / Analy
 
 ## License
 
-This project is MIT, though the 3d DEM elevation data (10k.jpg) is uncertain.
+This project is MIT, though the 3d DEM elevation data (10k.jpg) and vector layers are uncertain.
