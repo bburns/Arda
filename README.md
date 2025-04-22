@@ -69,7 +69,7 @@ Open [data/arda.qgs](./data/arda.qgs) in QGIS
 
 You can turn different layers on and off, adjust opacity, change the map colors, add labels, etc.
 
-![qgis](./images/qgis-screen.jpg)
+![qgis](./images/qgis-screen.webp)
 
 
 ## Building
