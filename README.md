@@ -28,20 +28,25 @@ bburns made the project Arda - added curved Tolkienesque labels, colored the dif
 
 andewheiss took over project maintenance for the old vector layers - https://github.com/andrewheiss/ME-GIS - so these need to be merged...
 
+tetrakai1 fixed accent characters and moved the shapefiles into geopackage files
+
 
 ## Data
 
 The folder 'data' includes:
 
-- arda.qgs - the XML project file for QGIS - it describes where to find the elevation, vector, and hillshade layers, and how to color the map.
+- arda.qgs - the XML project file for QGIS - it describes where to find the raster and vector layers, and how to color the map.
 
-- elevation 
+- rasters
   - 10k.jpg - black and white jpg DEM file with 10k x 10k pixels. The entire map covers 2000km on each side, so the resolution is 200m/pixel. 
+  - 10k.jpg.aux.xml - some metadata
   - 10k.wld - defines how the DEM corresponds to the map coordinate system as used by the vector data. This is currently slightly off - improvements could be made. 
+  - hillshade.jpg - the hillshade image rendered from the elevation data.
+  - hillshade.jpg.aux.xml - some metadata
 
-- hillshade - includes the hillshade image rendered from the elevation data.
-
-- vector - includes layers for place names, rivers, forests, and mountains.
+- vectors
+  - contours.gpkg - GeoPackage file with elevation contours
+  - vectors.gpkg - GeoPackage file with layers for place names, rivers, roads, forests, mountains, cities, etc.
 
 
 ## Resolution
@@ -92,4 +97,4 @@ If you change the DEM and need to rebuild the hillshade layer - **Raster / Analy
 
 ## License
 
-This project is MIT, though the 3d DEM elevation data (10k.jpg) and vector layers are uncertain.
+This project is MIT, though the original 3d DEM elevation data (10k.jpg) and vector layers are uncertain.
