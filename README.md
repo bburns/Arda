@@ -2,6 +2,8 @@
 
 Maps of J. R. R. Tolkien's Middle Earth, using a DEM (Digital Elevation Model), which is a 10k x 10k pixel black and white jpeg image, and place name vectors.
 
+This project was originally created by users on the [Outerra Worlds Forum](http://worlds.outercraft.com/forum/index.php) - monks and Redrobes created the DEM using real-world 3d elevation data, hand-editing, and simulated erosion; and monks, SeerBlue, and Redrobes created the place names. 
+
 [Arda](https://en.wikipedia.org/wiki/Arda_(Tolkien)) was the name of the entire world, which included the part known as Middle Earth. 
 
 ![all](./images/map-all.jpg)
@@ -13,23 +15,6 @@ Maps of J. R. R. Tolkien's Middle Earth, using a DEM (Digital Elevation Model), 
 - Make colored elevation maps with hillshading
 - Make name placement and size similar to Tolkien's maps
 - Use as detailed maps for Adventures in Middle Earth (D&D 5e) games
-
-## History
-
-Some users on the [Outerra Worlds Forum](http://worlds.outercraft.com/forum/index.php) created the original project, called ME-DEM. 
-
-monks and Redrobes created the DEM using real-world 3d elevation data, hand-editing, and simulated erosion. 
-
-monks, SeerBlue, and Redrobes created the place names. 
-
-jvangeld took over project maintenance.
-
-bburns made the project Arda - added curved Tolkienesque labels, colored the different elevations, and added a hillshade layer.
-
-andewheiss took over project maintenance for the old vector layers - https://github.com/andrewheiss/ME-GIS - so these need to be merged...
-
-tetrakai1 fixed accent characters and moved the shapefiles into geopackage files
-
 
 ## Data
 
@@ -67,6 +52,10 @@ Clone this repo
     git clone https://github.com/bburns/Arda.git
     cd Arda
 
+Note: if you just want to look around without making edits, you can save repo space with a shallow clone - 
+
+    git clone --depth=1 https://github.com/bburns/Arda.git
+
 Install the Tolkien font (fonts/Tolkien.ttf) in your system - eg in Windows, right click on the file and say Install. 
 
 Install [QGIS](https://qgis.org/)
@@ -94,6 +83,23 @@ If you change the DEM and need to rebuild the hillshade layer - **Raster / Analy
 - Switch easily between colorful and minimal color versions - how do?
 - Get access to 40k x 40k DEM (50m/px) version
 - Render to tiles for Google Maps-like site, using Leaflet - try vector map tiles and mapboxGL? include search index
+
+
+## History
+
+Some users on the [Outerra Worlds Forum](http://worlds.outercraft.com/forum/index.php) created the original project, called ME-DEM. 
+
+monks and Redrobes created the DEM using real-world 3d elevation data, hand-editing, and simulated erosion. 
+
+monks, SeerBlue, and Redrobes created the place names. 
+
+jvangeld took over project maintenance.
+
+bburns made the project Arda - added curved Tolkienesque labels, colored the different elevations, and added a hillshade layer.
+
+andewheiss took over project maintenance for the old vector layers - https://github.com/andrewheiss/ME-GIS - so these need to be merged...
+
+tetrakai1 fixed accent characters and moved the shapefiles into geopackage files
 
 
 ## License
