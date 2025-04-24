@@ -1,6 +1,8 @@
 # qgis backup
 *.qgs~
 
-*.zip
+# qgis temporary files - write ahead log and shared memory
+*.gpkg-wal
+*.gpkg-shm
 
 experiments

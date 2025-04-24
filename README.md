@@ -35,7 +35,8 @@ tetrakai1 fixed accent characters and moved the shapefiles into geopackage files
 
 The folder 'data' includes:
 
-- arda.qgs - the XML project file for QGIS - it describes where to find the raster and vector layers, and how to color the map.
+- arda.qgs - the XML project file for QGIS - it describes where to find the raster and vector layers, and how to color the map. Note: you can also use .qgz to save the project, but that is a zip file and I had wanted to use the XML version to try to conserve space in the git repo. As it is though, QGIS doesn't seem to maintain attribute order in the XML, so the text diffs can be large. 
+- arda_attachments.zip - auxiliary project data stored in a sqlite database, eg for custom overrides to labels. This is a QGD file, and would be included in a .qgz file. 
 
 - rasters
   - 10k.jpg - black and white jpg DEM file with 10k x 10k pixels. The entire map covers 2000km on each side, so the resolution is 200m/pixel. 
