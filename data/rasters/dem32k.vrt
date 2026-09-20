@@ -4,28 +4,28 @@
   <VRTRasterBand dataType="UInt16" band="1">
     <ColorInterp>Gray</ColorInterp>
     <SimpleSource>
-      <SourceFilename relativeToVRT="1">dem40k_nw.tif</SourceFilename>
+      <SourceFilename relativeToVRT="1">dem32k_nw.tif</SourceFilename>
       <SourceBand>1</SourceBand>
       <SourceProperties RasterXSize="16128" RasterYSize="16128" DataType="UInt16" BlockXSize="256" BlockYSize="256" />
       <SrcRect xOff="0" yOff="0" xSize="16128" ySize="16128" />
       <DstRect xOff="0" yOff="0" xSize="16128" ySize="16128" />
     </SimpleSource>
     <SimpleSource>
-      <SourceFilename relativeToVRT="1">dem40k_ne.tif</SourceFilename>
+      <SourceFilename relativeToVRT="1">dem32k_ne.tif</SourceFilename>
       <SourceBand>1</SourceBand>
       <SourceProperties RasterXSize="16129" RasterYSize="16128" DataType="UInt16" BlockXSize="256" BlockYSize="256" />
       <SrcRect xOff="0" yOff="0" xSize="16129" ySize="16128" />
       <DstRect xOff="16128" yOff="0" xSize="16129" ySize="16128" />
     </SimpleSource>
     <SimpleSource>
-      <SourceFilename relativeToVRT="1">dem40k_sw.tif</SourceFilename>
+      <SourceFilename relativeToVRT="1">dem32k_sw.tif</SourceFilename>
       <SourceBand>1</SourceBand>
       <SourceProperties RasterXSize="16128" RasterYSize="16129" DataType="UInt16" BlockXSize="256" BlockYSize="256" />
       <SrcRect xOff="0" yOff="0" xSize="16128" ySize="16129" />
       <DstRect xOff="0" yOff="16128" xSize="16128" ySize="16129" />
     </SimpleSource>
     <SimpleSource>
-      <SourceFilename relativeToVRT="1">dem40k_se.tif</SourceFilename>
+      <SourceFilename relativeToVRT="1">dem32k_se.tif</SourceFilename>
       <SourceBand>1</SourceBand>
       <SourceProperties RasterXSize="16129" RasterYSize="16129" DataType="UInt16" BlockXSize="256" BlockYSize="256" />
       <SrcRect xOff="0" yOff="0" xSize="16129" ySize="16129" />

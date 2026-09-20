@@ -6,7 +6,7 @@
 *.gpkg-shm
 
 # high-res DEM and its hillshade - too big for git, download from the GitHub release (see README)
-data/rasters/dem40k_*.tif*
-data/rasters/hillshade40k.tif*
+data/rasters/dem32k_*.tif*
+data/rasters/hillshade32k.tif*
 
 experiments
