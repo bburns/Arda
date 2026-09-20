@@ -118,6 +118,8 @@ andewheiss took over project maintenance for the old vector layers - https://git
 
 tetrakai1 fixed accent characters and moved the shapefiles into geopackage files
 
+bburns added the 32k DEM (2026-09-20) - see [docs/2026-09-20-32k-dem.md](./docs/2026-09-20-32k-dem.md) for how it was built and what was learned about the data.
+
 
 ## License
 
