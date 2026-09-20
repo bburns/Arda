@@ -8,22 +8,22 @@
   edge row/column, so the full mosaic is 8*4032+1 = 32257 px square. Tile x
   increases eastward and tile y increases NORTHWARD (y=7 is the top row).
 
-  This script assumes the mosaic covers the same 2000 km square as dem10k.jpg and
-  derives its georeferencing from data/rasters/dem10k.wld, so the two DEMs overlay
+  This script assumes the mosaic covers the same 2000 km square as 10k/dem.jpg and
+  derives its georeferencing from data/rasters/10k/dem.wld, so the two DEMs overlay
   exactly. It writes a world file per tile, builds a VRT mosaic of them, then
   writes four quadrant GeoTIFFs (deflate compressed, internal overviews) plus
-  dem32k.vrt which presents them as one raster. Quadrants rather than one file
+  32k/dem.vrt which presents them as one raster. Quadrants rather than one file
   because GitHub release uploads over ~500 MB time out.
 
   Requires GDAL - the QGIS standalone installer ships it. Point -QgisDir at the
   install folder if it isn't auto-detected.
 
 .EXAMPLE
-  .\scripts\build-dem.ps1 -TilesDir "D:\height_ue" -OutFile "data\rasters\dem32k.vrt"
+  .\scripts\build-dem.ps1 -TilesDir "D:\height_ue" -OutFile "data\rasters\32k\dem.vrt"
 #>
 param(
     [Parameter(Mandatory)] [string] $TilesDir,
-    [string] $OutFile = (Join-Path $PSScriptRoot "..\data\rasters\dem32k.vrt"),
+    [string] $OutFile = (Join-Path $PSScriptRoot "..\data\rasters\32k\dem.vrt"),
     [string] $QgisDir,
     [int] $TileSize = 4033,
     [int] $Overlap = 1,
@@ -47,9 +47,9 @@ function Invoke-Gdal([string] $cmd) {
     if ($LASTEXITCODE -ne 0) { throw "GDAL command failed ($LASTEXITCODE): $cmd" }
 }
 
-# --- georeferencing from dem10k.wld -------------------------------------------
+# --- georeferencing from 10k/dem.wld -------------------------------------------
 # World files give the CENTER of the top-left pixel, so back out the corner.
-$wld = Get-Content (Join-Path $PSScriptRoot "..\data\rasters\dem10k.wld")
+$wld = Get-Content (Join-Path $PSScriptRoot "..\data\rasters\10k\dem.wld")
 $px10k = [double] $wld[0]
 $cornerX = [double] $wld[4] - $px10k / 2
 $cornerY = [double] $wld[5] + $px10k / 2
@@ -97,14 +97,14 @@ $quadFiles = foreach ($q in "nw", "ne", "sw", "se") {
                  "`"$qf`" 2 4 8 16 32 64")
     $qf
 }
-# dem32k.vrt references the quadrants by relative name, so it can live in git
+# dem.vrt references the quadrants by relative name, so it can live in git
 Invoke-Gdal ("gdalbuildvrt `"$OutFile`" " + (($quadFiles | ForEach-Object { "`"$_`"" }) -join " "))
 Invoke-Gdal "gdalinfo -stats `"$OutFile`""
 
 # --- hillshade -----------------------------------------------------------------
 # The 16-bit values are ~250-360x the old 8-bit ones, so z=0.4 here gives the
-# same relief as z=100 did for dem10k.jpg. JPEG-in-TIFF keeps it ~1/5 the size.
-$hs = Join-Path $outDir "hillshade32k.tif"
+# same relief as z=100 did for 10k/dem.jpg. JPEG-in-TIFF keeps it ~1/5 the size.
+$hs = Join-Path $outDir "hillshade.tif"
 Invoke-Gdal ("gdaldem hillshade -z 0.4 -compute_edges -co TILED=YES -co COMPRESS=JPEG " +
              "-co JPEG_QUALITY=85 -co NUM_THREADS=ALL_CPUS -co BIGTIFF=IF_SAFER `"$OutFile`" `"$hs`"")
 Invoke-Gdal "gdaladdo -r average --config COMPRESS_OVERVIEW JPEG `"$hs`" 2 4 8 16 32 64"
