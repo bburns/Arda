@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  Stitch the 64 ME-DEM Unreal Engine heightmap tiles into one georeferenced GeoTIFF.
+  Stitch the 64 ME-DEM Unreal Engine heightmap tiles into a georeferenced DEM.
 
 .DESCRIPTION
   The high-resolution DEM (MEDEM_x{0-7}_y{0-7}.png) is an 8x8 grid of 4033x4033
@@ -10,18 +10,20 @@
 
   This script assumes the mosaic covers the same 2000 km square as 10k.jpg and
   derives its georeferencing from data/rasters/10k.wld, so the two DEMs overlay
-  exactly. It writes a world file per tile, builds a VRT mosaic, then converts
-  it to a Cloud Optimized GeoTIFF (deflate compressed, internal overviews).
+  exactly. It writes a world file per tile, builds a VRT mosaic of them, then
+  writes four quadrant GeoTIFFs (deflate compressed, internal overviews) plus
+  dem40k.vrt which presents them as one raster. Quadrants rather than one file
+  because GitHub release uploads over ~500 MB time out.
 
   Requires GDAL - the QGIS standalone installer ships it. Point -QgisDir at the
   install folder if it isn't auto-detected.
 
 .EXAMPLE
-  .\scripts\build-dem.ps1 -TilesDir "D:\height_ue" -OutFile "data\rasters\dem40k.tif"
+  .\scripts\build-dem.ps1 -TilesDir "D:\height_ue" -OutFile "data\rasters\dem40k.vrt"
 #>
 param(
     [Parameter(Mandatory)] [string] $TilesDir,
-    [string] $OutFile = (Join-Path $PSScriptRoot "..\data\rasters\dem40k.tif"),
+    [string] $OutFile = (Join-Path $PSScriptRoot "..\data\rasters\dem40k.vrt"),
     [string] $QgisDir,
     [int] $TileSize = 4033,
     [int] $Overlap = 1,
@@ -74,26 +76,39 @@ for ($y = 0; $y -lt $GridSize; $y++) {
 
 # --- stitch ------------------------------------------------------------------
 $OutFile = [IO.Path]::GetFullPath($OutFile)
-$vrt = [IO.Path]::ChangeExtension($OutFile, ".vrt")
+$outDir = Split-Path $OutFile
+$base = [IO.Path]::GetFileNameWithoutExtension($OutFile)
+$tilesVrt = Join-Path $TilesDir "tiles.vrt"
 $list = Join-Path $TilesDir "tiles.txt"
 $tiles | Set-Content -Encoding ascii $list
+Invoke-Gdal "gdalbuildvrt -a_srs $Crs -input_file_list `"$list`" `"$tilesVrt`""
 
-Invoke-Gdal "gdalbuildvrt -a_srs $Crs -input_file_list `"$list`" `"$vrt`""
-Invoke-Gdal ("gdal_translate -of GTiff -co TILED=YES -co COMPRESS=DEFLATE -co PREDICTOR=2 " +
-             "-co NUM_THREADS=ALL_CPUS -co BIGTIFF=IF_SAFER `"$vrt`" `"$OutFile`"")
-# internal overviews so QGIS can pan/zoom the full map without reading 2 GB
-Invoke-Gdal ("gdaladdo -r average --config COMPRESS_OVERVIEW DEFLATE --config PREDICTOR_OVERVIEW 2 " +
-             "`"$OutFile`" 2 4 8 16 32 64")
+# four quadrants, each with internal overviews so QGIS can pan/zoom without reading 2 GB
+$half = [math]::Floor($mosaicPx / 2)
+$quads = @{ nw = @(0, 0); ne = @($half, 0); sw = @(0, $half); se = @($half, $half) }
+$quadFiles = foreach ($q in "nw", "ne", "sw", "se") {
+    $x0, $y0 = $quads[$q]
+    $w = $mosaicPx - $x0; $h = $mosaicPx - $y0
+    if ($x0 -eq 0) { $w = $half }; if ($y0 -eq 0) { $h = $half }
+    $qf = Join-Path $outDir "${base}_$q.tif"
+    Invoke-Gdal ("gdal_translate -srcwin $x0 $y0 $w $h -of GTiff -co TILED=YES -co COMPRESS=DEFLATE " +
+                 "-co PREDICTOR=2 -co NUM_THREADS=ALL_CPUS -co BIGTIFF=IF_SAFER `"$tilesVrt`" `"$qf`"")
+    Invoke-Gdal ("gdaladdo -r average --config COMPRESS_OVERVIEW DEFLATE --config PREDICTOR_OVERVIEW 2 " +
+                 "`"$qf`" 2 4 8 16 32 64")
+    $qf
+}
+# dem40k.vrt references the quadrants by relative name, so it can live in git
+Invoke-Gdal ("gdalbuildvrt `"$OutFile`" " + (($quadFiles | ForEach-Object { "`"$_`"" }) -join " "))
 Invoke-Gdal "gdalinfo -stats `"$OutFile`""
 
 # --- hillshade -----------------------------------------------------------------
 # The 16-bit values are ~250-360x the old 8-bit ones, so z=0.4 here gives the
 # same relief as z=100 did for 10k.jpg. JPEG-in-TIFF keeps it ~1/5 the size.
-$hs = Join-Path (Split-Path $OutFile) "hillshade40k.tif"
+$hs = Join-Path $outDir "hillshade40k.tif"
 Invoke-Gdal ("gdaldem hillshade -z 0.4 -compute_edges -co TILED=YES -co COMPRESS=JPEG " +
              "-co JPEG_QUALITY=85 -co NUM_THREADS=ALL_CPUS -co BIGTIFF=IF_SAFER `"$OutFile`" `"$hs`"")
 Invoke-Gdal "gdaladdo -r average --config COMPRESS_OVERVIEW JPEG `"$hs`" 2 4 8 16 32 64"
 
-Remove-Item $vrt, $list
-Write-Host "Wrote $OutFile ($([math]::Round((Get-Item $OutFile).Length / 1MB)) MB)"
-Write-Host "Wrote $hs ($([math]::Round((Get-Item $hs).Length / 1MB)) MB)"
+Remove-Item $tilesVrt, $list
+foreach ($f in $quadFiles + $hs) { Write-Host "Wrote $f ($([math]::Round((Get-Item $f).Length / 1MB)) MB)" }
+Write-Host "Wrote $OutFile"

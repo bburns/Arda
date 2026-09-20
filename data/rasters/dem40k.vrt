@@ -1,0 +1,36 @@
+<VRTDataset rasterXSize="32257" rasterYSize="32257">
+  <SRS dataAxisToSRSAxisMapping="1,2">PROJCS["WGS 84 / UTM zone 31N",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",3],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Easting",EAST],AXIS["Northing",NORTH],AUTHORITY["EPSG","32631"]]</SRS>
+  <GeoTransform> -1.0000500000000000e+03,  6.2033047090554000e+01,  0.0000000000000000e+00,  2.0012000499999954e+06,  0.0000000000000000e+00, -6.2033047090554000e+01</GeoTransform>
+  <VRTRasterBand dataType="UInt16" band="1">
+    <ColorInterp>Gray</ColorInterp>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">dem40k_nw.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="16128" RasterYSize="16128" DataType="UInt16" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="16128" ySize="16128" />
+      <DstRect xOff="0" yOff="0" xSize="16128" ySize="16128" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">dem40k_ne.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="16129" RasterYSize="16128" DataType="UInt16" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="16129" ySize="16128" />
+      <DstRect xOff="16128" yOff="0" xSize="16129" ySize="16128" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">dem40k_sw.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="16128" RasterYSize="16129" DataType="UInt16" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="16128" ySize="16129" />
+      <DstRect xOff="0" yOff="16128" xSize="16128" ySize="16129" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">dem40k_se.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="16129" RasterYSize="16129" DataType="UInt16" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="16129" ySize="16129" />
+      <DstRect xOff="16128" yOff="16128" xSize="16129" ySize="16129" />
+    </SimpleSource>
+  </VRTRasterBand>
+  <OverviewList resampling="nearest">2 4 8 16 32 64</OverviewList>
+</VRTDataset>

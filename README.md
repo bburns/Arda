@@ -29,8 +29,9 @@ The folder 'data' includes:
   - 10k.wld - defines how the DEM corresponds to the map coordinate system as used by the vector data. This is currently slightly off - improvements could be made. 
   - hillshade.jpg - the hillshade image rendered from the elevation data.
   - hillshade.jpg.aux.xml - some metadata
-  - dem40k.tif - (not in git - see [High resolution DEM](#high-resolution-dem)) 16-bit GeoTIFF DEM with 32k x 32k pixels, 62m/pixel.
-  - hillshade40k.tif - (not in git) the hillshade image rendered from dem40k.tif.
+  - dem40k.vrt - 16-bit DEM with 32k x 32k pixels, 62m/pixel, as a GDAL virtual raster over four quadrant files - see [High resolution DEM](#high-resolution-dem).
+  - dem40k_nw.tif, dem40k_ne.tif, dem40k_sw.tif, dem40k_se.tif - (not in git) the quadrant GeoTIFFs the .vrt refers to.
+  - hillshade40k.tif - (not in git) the hillshade image rendered from dem40k.vrt.
 
 - vectors
   - contours.gpkg - GeoPackage file with elevation contours
@@ -73,18 +74,18 @@ You can turn different layers on and off, adjust opacity, change the map colors,
 
 If you change the DEM and need to rebuild the hillshade layer - **Raster / Analysis / Hillshade** - enter a Z factor (vertical exaggeration) of 100.0 and click Run. Then adjust the global opacity of the resulting layer to 50% - **Layer Styling sidebar / Transparency / Global Opacity**. This allows the underlying colored map to show through. 
 
-For dem40k.tif use a Z factor of 0.4 instead - its 16-bit values are roughly 250-360x larger than the 8-bit values in 10k.jpg. Or rebuild both the DEM and hillshade from the command line with scripts/build-dem.ps1.
+For dem40k.vrt use a Z factor of 0.4 instead - its 16-bit values are roughly 250-360x larger than the 8-bit values in 10k.jpg. Or rebuild both the DEM and hillshade from the command line with scripts/build-dem.ps1.
 
 ![hillshade](./images/qgis-hillshade.png)
 
 
 ## High resolution DEM
 
-The 32k x 32k 16-bit DEM (dem40k.tif, 966 MB) and its hillshade (hillshade40k.tif, 197 MB) are too large for git, so they are attached to a GitHub release instead - https://github.com/bburns/Arda/releases. Download both into `data/rasters/`, then in QGIS turn on the `dem40k` and `hillshade40k` layers and turn off `10k` and `hillshade`. They are georeferenced to line up exactly with 10k.jpg.
+The 32k x 32k 16-bit DEM (four quadrant GeoTIFFs, ~1 GB total) and its hillshade (hillshade40k.tif, 197 MB) are too large for git, so they are attached to a GitHub release instead - https://github.com/bburns/Arda/releases. Download all five files into `data/rasters/` (`data/rasters/dem40k.vrt`, which is in git, stitches the four quadrants into one layer), then in QGIS turn on the `dem40k` and `hillshade40k` layers and turn off `10k` and `hillshade`. They are georeferenced to line up exactly with 10k.jpg.
 
 Until the files are downloaded, QGIS will report the two layers as unavailable when opening the project - choose *Keep Unavailable Layers* and carry on with the 10k layers.
 
-The source data is an 8x8 grid of 4033x4033 16-bit PNG heightmap tiles exported from Unreal Engine (MEDEM_x0_y0.png ... MEDEM_x7_y7.png, 766 MB). `scripts/build-dem.ps1` georeferences the tiles, stitches them into the GeoTIFF, adds overviews, and renders the hillshade - it needs GDAL, which comes with QGIS.
+The source data is an 8x8 grid of 4033x4033 16-bit PNG heightmap tiles exported from Unreal Engine (MEDEM_x0_y0.png ... MEDEM_x7_y7.png, 766 MB). `scripts/build-dem.ps1` georeferences the tiles, stitches them into the quadrant GeoTIFFs and dem40k.vrt, adds overviews, and renders the hillshade - it needs GDAL, which comes with QGIS.
 
     .\scripts\build-dem.ps1 -TilesDir path\to\height_ue
 
