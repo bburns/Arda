@@ -34,6 +34,7 @@ The folder 'data' includes:
     - dem.vrt - 16-bit DEM with 32k x 32k pixels, 62m/pixel, as a GDAL virtual raster over four quadrant files - see [High resolution DEM](#high-resolution-dem).
     - dem_nw.tif, dem_ne.tif, dem_sw.tif, dem_se.tif - (not in git) the quadrant GeoTIFFs the .vrt refers to.
     - hillshade.tif - (not in git) the hillshade image rendered from dem.vrt.
+    - tiles - (not in git) the 64 source heightmap PNGs the DEM is built from - from https://github.com/therealJiko/LOTROW/tree/main/TERRAIN/height_ue
 
 - vectors
   - contours.gpkg - GeoPackage file with elevation contours
@@ -87,9 +88,9 @@ The 32k x 32k 16-bit DEM (four quadrant GeoTIFFs, ~1 GB total) and its hillshade
 
 Until the files are downloaded, QGIS will report the two layers as unavailable when opening the project - choose *Keep Unavailable Layers* and carry on with the 10k layers.
 
-The heightmap was created by Pete Lewis ([therealJiko](https://github.com/therealJiko)) - thank you! The source data is an 8x8 grid of 4033x4033 16-bit PNG heightmap tiles exported from Unreal Engine (MEDEM_x0_y0.png ... MEDEM_x7_y7.png, 766 MB). `scripts/build-dem.ps1` georeferences the tiles, stitches them into the quadrant GeoTIFFs and dem.vrt, adds overviews, and renders the hillshade - it needs GDAL, which comes with QGIS.
+The heightmap was created by Pete Lewis ([therealJiko](https://github.com/therealJiko)) - thank you! The source data is an 8x8 grid of 4033x4033 16-bit PNG heightmap tiles exported from Unreal Engine (MEDEM_x0_y0.png ... MEDEM_x7_y7.png, 766 MB), from his [LOTROW](https://github.com/therealJiko/LOTROW) repo at [TERRAIN/height_ue](https://github.com/therealJiko/LOTROW/tree/main/TERRAIN/height_ue). Download them into `data/rasters/32k/tiles/`. `scripts/build-dem.ps1` georeferences the tiles, stitches them into the quadrant GeoTIFFs and dem.vrt, adds overviews, and renders the hillshade - it needs GDAL, which comes with QGIS.
 
-    .\scripts\build-dem.ps1 -TilesDir path\to\height_ue
+    .\scripts\build-dem.ps1 -TilesDir data\rasters\32k\tiles
 
 
 ## Todo

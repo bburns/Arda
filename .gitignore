@@ -8,4 +8,7 @@
 # high-res DEM and its hillshade - too big for git, download from the GitHub release (see README)
 data/rasters/32k/*.tif*
 
+# source heightmap tiles for the 32k DEM - from Pete Lewis's LOTROW repo (see README)
+data/rasters/32k/tiles/
+
 experiments
