@@ -2,7 +2,7 @@
 
 Maps of J. R. R. Tolkien's Middle Earth, using a DEM (Digital Elevation Model), which is a 10k x 10k pixel black and white jpeg image, plus a high resolution 32k x 32k pixel 16-bit version, and place name vectors.
 
-This project was originally created by users on the [Outerra Worlds Forum](http://worlds.outercraft.com/forum/index.php) - monks and Redrobes created the DEM using real-world 3d elevation data, hand-editing, and simulated erosion; and monks, SeerBlue, and Redrobes created the place names. The 32k x 32k DEM comes from a separate project started by Pete Lewis ([therealJiko](https://github.com/therealJiko)), who took the Outerra forum DEM, ran erosion simulations on it in Unreal Engine for greater detail, and generously gave the result to this project - see [issue #4](https://github.com/bburns/Arda/issues/4).
+This project was originally created by users on the [Outerra Worlds Forum](http://worlds.outercraft.com/forum/index.php) - monks and Redrobes created the DEM using real-world 3d elevation data, hand-editing, and simulated erosion, in a project called ME-DEM; and monks, SeerBlue, and Redrobes created the place names and other vector layers, later maintained as [ME-GIS](https://github.com/jvangeld/ME-GIS). The 32k x 32k DEM comes from a separate project started by Pete Lewis ([therealJiko](https://github.com/therealJiko)), who took the ME-DEM, ran erosion simulations on it in Unreal Engine for greater detail, and generously gave the result to this project - see [issue #4](https://github.com/bburns/Arda/issues/4).
 
 [Arda](https://en.wikipedia.org/wiki/Arda_(Tolkien)) was the name of the entire world, which included the part known as Middle Earth. 
 
@@ -25,7 +25,7 @@ The folder 'data' includes:
 
 - rasters
   - 10k
-    - dem.jpg - black and white jpg DEM file with 10k x 10k pixels. The entire map covers 2000km on each side, so the resolution is 200m/pixel. 
+    - dem.jpg - black and white jpg DEM file with 10k x 10k pixels - the ME-DEM. The entire map covers 2000km on each side, so the resolution is 200m/pixel. 
     - dem.jpg.aux.xml - some metadata
     - dem.wld - defines how the DEM corresponds to the map coordinate system as used by the vector data. This is currently slightly off - improvements could be made. 
     - hillshade.jpg - the hillshade image rendered from dem.jpg.
@@ -38,7 +38,7 @@ The folder 'data' includes:
 
 - vectors
   - contours.gpkg - GeoPackage file with elevation contours
-  - vectors.gpkg - GeoPackage file with layers for place names, rivers, roads, forests, mountains, cities, etc.
+  - vectors.gpkg - GeoPackage file with layers for place names, rivers, roads, forests, mountains, cities, etc. - from [ME-GIS](https://github.com/jvangeld/ME-GIS).
 
 
 ## Resolution
@@ -88,7 +88,7 @@ The 32k x 32k 16-bit DEM (four quadrant GeoTIFFs, ~1 GB total) and its hillshade
 
 Until the files are downloaded, QGIS will report the two layers as unavailable when opening the project - choose *Keep Unavailable Layers* and carry on with the 10k layers.
 
-The heightmap was created by Pete Lewis ([therealJiko](https://github.com/therealJiko)) from the Outerra forum DEM, with added erosion simulation - thank you! It is licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) - see [License](#license). The source data is an 8x8 grid of 4033x4033 16-bit PNG heightmap tiles exported from Unreal Engine (MEDEM_x0_y0.png ... MEDEM_x7_y7.png, 766 MB), from his [LOTROW](https://github.com/therealJiko/LOTROW) repo at [TERRAIN/height_ue](https://github.com/therealJiko/LOTROW/tree/main/TERRAIN/height_ue). A copy is attached to a separate release - https://github.com/bburns/Arda/releases/tag/dem-32k-source-v1 - download medem-tiles.zip and unzip it into `data/rasters/32k/`, which puts the tiles in `data/rasters/32k/tiles/`. `scripts/build-dem.ps1` georeferences the tiles, stitches them into the quadrant GeoTIFFs and dem.vrt, adds overviews, and renders the hillshade - it needs GDAL, which comes with QGIS.
+The heightmap was created by Pete Lewis ([therealJiko](https://github.com/therealJiko)) from the ME-DEM, with added erosion simulation - thank you! It is licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) - see [License](#license). The source data is an 8x8 grid of 4033x4033 16-bit PNG heightmap tiles exported from Unreal Engine (MEDEM_x0_y0.png ... MEDEM_x7_y7.png, 766 MB), from his [LOTROW](https://github.com/therealJiko/LOTROW) repo at [TERRAIN/height_ue](https://github.com/therealJiko/LOTROW/tree/main/TERRAIN/height_ue). A copy is attached to a separate release - https://github.com/bburns/Arda/releases/tag/dem-32k-source-v1 - download medem-tiles.zip and unzip it into `data/rasters/32k/`, which puts the tiles in `data/rasters/32k/tiles/`. `scripts/build-dem.ps1` georeferences the tiles, stitches them into the quadrant GeoTIFFs and dem.vrt, adds overviews, and renders the hillshade - it needs GDAL, which comes with QGIS.
 
     .\scripts\build-dem.ps1 -TilesDir data\rasters\32k\tiles
 
@@ -105,21 +105,21 @@ The heightmap was created by Pete Lewis ([therealJiko](https://github.com/therea
 
 ## History
 
-Some users on the [Outerra Worlds Forum](http://worlds.outercraft.com/forum/index.php) created the original project, called ME-DEM. 
+Some users on the [Outerra Worlds Forum](http://worlds.outercraft.com/forum/index.php) created the original projects, called ME-DEM (the elevation map) and ME-GIS (the vector layers). 
 
 monks and Redrobes created the DEM using real-world 3d elevation data, hand-editing, and simulated erosion. 
 
 monks, SeerBlue, and Redrobes created the place names. 
 
-jvangeld took over project maintenance.
+jvangeld took over project maintenance, as [ME-GIS](https://github.com/jvangeld/ME-GIS).
 
 bburns made the project Arda - added curved Tolkienesque labels, colored the different elevations, and added a hillshade layer.
 
-andewheiss took over project maintenance for the old vector layers - https://github.com/andrewheiss/ME-GIS - so these need to be merged...
+andrewheiss took over project maintenance for the old vector layers - https://github.com/andrewheiss/ME-GIS - so these need to be merged...
 
 tetrakai1 fixed accent characters and moved the shapefiles into geopackage files
 
-Pete Lewis ([therealJiko](https://github.com/therealJiko)) started a separate project that needed more detail, so he ran erosion simulations on the Outerra forum DEM in Unreal Engine to make a high resolution heightmap of Middle Earth, and gave it to Arda - see [issue #4](https://github.com/bburns/Arda/issues/4).
+Pete Lewis ([therealJiko](https://github.com/therealJiko)) started a separate project that needed more detail, so he ran erosion simulations on the ME-DEM in Unreal Engine to make a high resolution heightmap of Middle Earth, and gave it to Arda - see [issue #4](https://github.com/bburns/Arda/issues/4).
 
 bburns added the 32k DEM from that heightmap (2026-09-20) - see [docs/2026-09-20-32k-dem.md](./docs/2026-09-20-32k-dem.md) for how it was built and what was learned about the data.
 
@@ -128,6 +128,6 @@ bburns added the 32k DEM from that heightmap (2026-09-20) - see [docs/2026-09-20
 
 - Code (scripts/, the QGIS project) - MIT.
 - 32k heightmap (data/rasters/32k/, and the tiles in the dem-32k-source-v1 release) - [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), by Pete Lewis ([therealJiko](https://github.com/therealJiko)), with his permission - see [issue #4](https://github.com/bburns/Arda/issues/4). Credit him if you use it.
-- The original Outerra forum DEM (data/rasters/10k/) that the 32k heightmap is based on, and the vector layers, are by the forum users listed under [History](#history) - their license is uncertain.
+- The original ME-DEM (data/rasters/10k/) that the 32k heightmap is based on, and the ME-GIS vector layers (data/vectors/), are by the forum users listed under [History](#history) - their license is uncertain.
 
 This is a fan work, not affiliated with the Tolkien Estate. These licenses cover the contributors' own work only, not Tolkien's world itself.
